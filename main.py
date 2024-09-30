@@ -72,3 +72,6 @@ def main():
     finally:
         # Cerrar conexión a la base de datos
         conexion.close()
+
+if __name__ == "__main__":
+    main()
