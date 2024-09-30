@@ -50,3 +50,25 @@ def obtener_estadisticas(df):
     productos_stock_bajo = df[df['Stock'] < df['Minimo']][['producto', 'Stock']]
     print("\nProductos con stock por debajo del mínimo:")
     print(productos_stock_bajo)
+
+# Función principal
+def main():
+    # Conectar a la base de datos
+    conexion = conectar_db()
+    
+    try:
+        # Obtener datos
+        df = obtener_datos(conexion)
+        
+        # Mostrar estadísticas
+        obtener_estadisticas(df)
+        
+        # Graficar distribución del stock
+        grafico_distribucion_stock(df)
+        
+        # Graficar productos con stock por debajo del mínimo
+        grafico_stock_bajo(df)
+    
+    finally:
+        # Cerrar conexión a la base de datos
+        conexion.close()
