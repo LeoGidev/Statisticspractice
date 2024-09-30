@@ -41,3 +41,12 @@ def grafico_stock_bajo(df):
         plt.show()
     else:
         print("No hay productos con stock por debajo del mínimo.")
+
+# Obtener estadísticas básicas de los datos
+def obtener_estadisticas(df):
+    print("Estadísticas básicas de Stock:")
+    print(df.describe())
+    
+    productos_stock_bajo = df[df['Stock'] < df['Minimo']][['producto', 'Stock']]
+    print("\nProductos con stock por debajo del mínimo:")
+    print(productos_stock_bajo)
