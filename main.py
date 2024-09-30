@@ -15,7 +15,7 @@ def conectar_db():
     return conexion
 # Obtener datos de la tabla 
 def obtener_datos(conexion):
-    query = "SELECT * FROM tabla"
+    query = "SELECT * FROM Stock"
     df = pd.read_sql(query, conexion)
     return df
 
@@ -27,3 +27,17 @@ def grafico_distribucion_stock(df):
     plt.xlabel('Cantidad de Stock')
     plt.ylabel('Frecuencia')
     plt.show()
+
+# Graficar 
+def grafico_stock_bajo(df):
+    stock_bajo = df[df['Stock'] < df['Minimo']]
+    
+    if not stock_bajo.empty:
+        plt.figure(figsize=(12, 8))
+        sns.barplot(x='producto', y='Stock', data=stock_bajo, palette='viridis')
+        plt.axhline(y=0, color='r', linestyle='--', label='Mínimo')
+        plt.title('Productos con Stock Bajo')
+        plt.xticks(rotation=45)
+        plt.show()
+    else:
+        print("No hay productos con stock por debajo del mínimo.")
