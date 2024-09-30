@@ -18,3 +18,12 @@ def obtener_datos(conexion):
     query = "SELECT * FROM tabla"
     df = pd.read_sql(query, conexion)
     return df
+
+# Graficar la distribución del stock
+def grafico_distribucion_stock(df):
+    plt.figure(figsize=(10, 6))
+    sns.histplot(df['Stock'], kde=True)
+    plt.title('Distribución del Stock')
+    plt.xlabel('Cantidad de Stock')
+    plt.ylabel('Frecuencia')
+    plt.show()
