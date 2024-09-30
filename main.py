@@ -13,3 +13,8 @@ def conectar_db():
         database="datos"
     )
     return conexion
+# Obtener datos de la tabla 
+def obtener_datos(conexion):
+    query = "SELECT * FROM tabla"
+    df = pd.read_sql(query, conexion)
+    return df
